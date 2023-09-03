@@ -77,7 +77,7 @@ let showCalendar = () => {
                 
                 //今日を表示
                 if(year === date.getFullYear() && month === date.getMonth() + 1 && count === date.getDate()){
-                    calendar += '<td class="today">' + count + "</td>";
+                    calendar += '<td id="today">' + count + "</td>";
                     count += 1;
 
                 //その他の日

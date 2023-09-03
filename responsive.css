@@ -1,0 +1,11 @@
+@media (max-width: 800px){
+    #moveMonth {
+        margin: 0 10%;
+    }
+}
+
+@media (max-width: 530px){
+    td {
+        padding: 15px 13px;
+    }
+}

@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+.container {
+    max-width: 1366px;
+    width: 100%;
+    padding: 0 5%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 50px;
+}
+
+#moveMonth {
+    margin: 0 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+h2 {
+    margin: 0;
+    font-size: 35px;
+}
+
+.btn {
+    height: 40px;
+    width: 45px;
+    font-weight: bold;
+    background-color: rgb(200, 204, 211);
+    border: 1px solid gray;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(134, 136, 140);
+}
+
+table {
+    margin: 20px auto;
+    border: 1px solid gray;
+}
+
+td {
+    border: 1px solid gray;
+    padding: 12px 22px;
+}
+
+td:first-child {
+    color: red;
+}
+
+td:last-child {
+    color: blue;
+}
+
+tr:first-child td{
+    padding: 5px 22px;
+    font-weight: bold;
+    background-color: rgb(200, 204, 211);
+}
+
+#today {
+    background-color: rgb(245, 167, 167);
+}
+
+.delete {
+    display: none;
+}
