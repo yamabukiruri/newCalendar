@@ -132,6 +132,8 @@ tr:first-child td{
 }
 
 .deleteBtn {
+    width: 20px;
+    height: 20px;
     border: 1px solid gray;
     border-radius: 5px;
 }
