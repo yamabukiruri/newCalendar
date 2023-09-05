@@ -131,24 +131,29 @@ let list = [];
 
 // 追加ボタンをクリックしたときの処理
 saveBtn.addEventListener("click", () => {
-    list.push(textarea.value);
-    localStorage.setItem("todo", JSON.stringify(list)); //todoをkeyとし、JSON形式で保存
-    textarea.value = "";
-    output.textContent = ""; // outputの内容を一旦消す
-    showList();
+    if(textarea.value){
+        list.push(textarea.value);
+        localStorage.setItem("todo", JSON.stringify(list)); //todoをkeyとし、JSON形式で保存
+        textarea.value = "";
+        output.textContent = ""; // outputの内容を一旦消す
+        showList();
+    }else{
+        alert("予定が入力されていません");
+    }
+
 });
 
 // リスト表示
 let showList = () => {
     let outputHTML = "";
-    for (let i = 0; i < list.length; i++) {
+    for(let i = 0; i < list.length; i++) {
         outputHTML += '<div class="noteData">' + list[i] + '<button class="deleteBtn">×</button>' + "</div>";
     }
     output.innerHTML = outputHTML;
 
     // 削除ボタン
     deleteBtns = document.querySelectorAll(".deleteBtn");
-    for (let i = 0; i < deleteBtns.length; i++) {
+    for(let i = 0; i < deleteBtns.length; i++) {
         deleteBtns[i].addEventListener("click", () => {
             list.splice(i, 1); //list[i]から1個の要素を取り除く
             localStorage.setItem("todo", JSON.stringify(list));
@@ -160,10 +165,10 @@ let showList = () => {
 // ページが読み込まれたときにlocalStorageからデータを読み込む
 document.addEventListener("DOMContentLoaded", () => {
     let storedData = localStorage.getItem("todo");
-    if (storedData) { //storedDataに何らかのデータが格納されているとき
+    if(storedData) { //storedDataに何らかのデータが格納されているとき
         list = JSON.parse(storedData); //JSON形式の文字列をJavaScriptオブジェクトに変換
         showList();
-    } else { //storedDataが空のとき
+    }else{ //storedDataが空のとき
         output.textContent = "予定がありません";
     }
 });
