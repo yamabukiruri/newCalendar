@@ -97,10 +97,10 @@ tr:first-child td{
 #note {
     position: fixed;
     top: 5%;
-    left: -500px;
+    left: -700px;
     resize: none;
     min-width: 250px;
-    width: 28%;
+    width: 40%;
     height: 80%;
     font-size: 15px;
     background-color: white;
@@ -174,19 +174,19 @@ textarea {
     position: fixed;
     top: 5%;
     right: 10%;
-    width: 200px;
+    width: 70px;
     height: 70px;
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     background-color: rgb(153, 183, 233);
     border: 1px solid gray;
-    border-radius: 5px;
+    border-radius: 100%;
     transition: 0.4s;
 }
 
 #addBtn:hover {
     cursor: pointer;
     color: white;
-    background-color: rgb(108, 127, 161);
+    background-color: rgb(129, 153, 194);
     transform: scale(1.1);
 }
