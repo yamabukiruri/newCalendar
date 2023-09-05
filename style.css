@@ -126,7 +126,7 @@ tr:first-child td{
     justify-content: space-between;
     width: 90%;
     margin: 15px auto;
-    padding: 5px;
+    padding: 7px;
     background-color: rgb(223, 227, 235);
     font-weight: bold;
 }
@@ -174,19 +174,19 @@ textarea {
     position: fixed;
     top: 5%;
     right: 10%;
-    height: 65px;
-    width: 65px;
-    font-size: 30px;
+    width: 200px;
+    height: 70px;
+    font-size: 20px;
     font-weight: bold;
-    background-color: rgb(200, 204, 211);
+    background-color: rgb(153, 183, 233);
     border: 1px solid gray;
-    border-radius: 50%;
-    transition: 0.5s;
+    border-radius: 5px;
+    transition: 0.4s;
 }
 
 #addBtn:hover {
     cursor: pointer;
     color: white;
-    background-color: rgb(134, 136, 140);
-    transform: scale(1.2);
+    background-color: rgb(108, 127, 161);
+    transform: scale(1.1);
 }
