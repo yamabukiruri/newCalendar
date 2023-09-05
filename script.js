@@ -96,6 +96,7 @@ let showCalendar = () => {
     htmlCalendar.innerHTML = calendar;
 };
 
+//日付部分が5行で収まった場合、6行目の余分なセルを消す関数
 let deleteCell = () => {
     let table = document.querySelector("table");
     let lastRow = table.rows[6];
@@ -104,3 +105,65 @@ let deleteCell = () => {
         lastRow.classList.add("delete");
     }
 }
+
+//todoリスト作成
+//（＋）ボタン
+let addBtn = document.querySelector("#addBtn");
+let mask = document.querySelector("#mask");
+let note = document.querySelector("#note");
+
+addBtn.addEventListener("click", () => {
+    mask.classList.replace("delete", "open");
+    note.classList.add("open");
+});
+
+mask.addEventListener("click", () => {
+    mask.classList.replace("open", "delete");
+    note.classList.remove("open");
+});
+
+//todoリスト本体
+let output = document.querySelector("#output");
+let textarea = document.querySelector("textarea");
+let saveBtn = document.querySelector("#saveBtn");
+let deleteBtns = document.querySelectorAll(".deleteBtn");
+let list = [];
+
+// 保存ボタンをクリックしたときの処理
+saveBtn.addEventListener("click", () => {
+    list.push(textarea.value);
+    localStorage.setItem("todo", JSON.stringify(list)); //todoをkeyとし、JSON形式で保存
+    textarea.value = "";
+    output.textContent = ""; // outputの内容を一旦消す
+    showList();
+});
+
+// リスト表示
+let showList = () => {
+    let outputHTML = "";
+    for (let i = 0; i < list.length; i++) {
+        outputHTML += '<div class="noteData">' + list[i] + '<button class="deleteBtn">×</button>' + "</div>";
+    }
+    output.innerHTML = outputHTML;
+
+    // 削除ボタン
+    deleteBtns = document.querySelectorAll(".deleteBtn");
+    for (let i = 0; i < deleteBtns.length; i++) {
+        deleteBtns[i].addEventListener("click", () => {
+            list.splice(i, 1); //list[i]から1個の要素を取り除く
+            localStorage.setItem("todo", JSON.stringify(list));
+            showList();
+        });
+    }
+}
+
+// ページが読み込まれたときにlocalStorageからデータを読み込む
+document.addEventListener("DOMContentLoaded", () => {
+    let storedData = localStorage.getItem("todo");
+    if (storedData) { //storedDataに何らかのデータが格納されているとき
+        list = JSON.parse(storedData); //JSON形式の文字列をJavaScriptオブジェクトに変換
+        showList();
+    } else { //storedDataが空のとき
+        output.textContent = "予定がありません";
+    }
+});
