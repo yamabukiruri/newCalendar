@@ -8,15 +8,18 @@
         <link rel="stylesheet" href="responsive.css">
     </head>
     <body>
+        <!--todoリスト-->
         <div id="note">
             <div id="output"></div>
             <div id="input">
                 <textarea placeholder="予定を入力"></textarea>
-                <button id="saveBtn">保存</button>
+                <button id="saveBtn">追加</button>
 
             </div>
         </div>
         <div id="mask" class="delete"></div>
+
+        <!--カレンダー-->
         <div class="container">
             <h1 id="year"></h1>
             <div id="moveMonth">
@@ -26,8 +29,9 @@
             </div>
             <div id="calendar"></div>
         </div>
+        
+        <!--予定追加ボタン-->
         <button id="addBtn">+</button>
-
 
         <!--JavaScript-->
         <script src="script.js"></script>

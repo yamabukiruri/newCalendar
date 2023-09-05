@@ -78,7 +78,7 @@ tr:first-child td{
     display: none;
 }
 
-/*スケジュール帳*/
+/*todoリスト*/
 #mask {
     width: 100%;
     height: 100%;
@@ -103,7 +103,6 @@ tr:first-child td{
     width: 28%;
     height: 80%;
     font-size: 15px;
-    font-family: serif;
     background-color: white;
     border: 1pt solid rgb(122, 120, 120);
     border-radius: 10px;
@@ -125,24 +124,69 @@ tr:first-child td{
 .noteData {
     display: flex;
     justify-content: space-between;
+    width: 90%;
     margin: 15px auto;
     padding: 5px;
-    width: 90%;
-    background-color: yellow;
+    background-color: rgb(223, 227, 235);
+    font-weight: bold;
+}
+
+.deleteBtn {
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.deleteBtn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(134, 136, 140);
 }
 
 #input {
     display: flex;
     width: 100%;
-    margin-top: 20px;
+    height: 8%;
+    margin-top: 15px;
 }
 
 textarea {
     width: 80%;
+    height: 100%;
     font-size: 17px;
+    border-radius: 5px;
 }
 
 #saveBtn {
     width: 17%;
+    height: 100%;
     margin-left: 3%;
+    background-color: rgb(245, 167, 167);
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+#saveBtn:hover {
+    cursor: pointer;
+    background-color: rgb(182, 126, 126);
+}
+
+#addBtn {
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    height: 65px;
+    width: 65px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: rgb(200, 204, 211);
+    border: 1px solid gray;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+#addBtn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(134, 136, 140);
+    transform: scale(1.2);
 }

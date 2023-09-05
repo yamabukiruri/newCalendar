@@ -129,7 +129,7 @@ let saveBtn = document.querySelector("#saveBtn");
 let deleteBtns = document.querySelectorAll(".deleteBtn");
 let list = [];
 
-// 保存ボタンをクリックしたときの処理
+// 追加ボタンをクリックしたときの処理
 saveBtn.addEventListener("click", () => {
     list.push(textarea.value);
     localStorage.setItem("todo", JSON.stringify(list)); //todoをkeyとし、JSON形式で保存
