@@ -6,6 +6,7 @@ let month = date.getMonth() + 1; //月は0~11で取得されるため、+1をす
 window.onload = () => { //ページ読み込みと同時にshowCalendarを実行する。これがないと初期状態で何も出力されない。
     showCalendar();
     deleteCell();
+    showSchedule();
 }
 
 //前月に戻る
@@ -18,6 +19,7 @@ prev.addEventListener("click", () => {
     }
     showCalendar(); //ボタンを押すたびにshowCalendar()を実行するようにしないと、カレンダーが更新されない
     deleteCell();
+    showSchedule();
 });
 
 //来月に進む
@@ -30,6 +32,7 @@ next.addEventListener("click", () => {
     }
     showCalendar(); //ボタンを押すたびにshowCalendar()を実行するようにしないと、カレンダーが更新されない
     deleteCell();
+    showSchedule();
 });
 
 let showCalendar = () => {
@@ -124,6 +127,13 @@ mask.addEventListener("click", () => {
 
 //todoリスト本体
 let output = document.querySelector("#output");
+let selectedYear = document.querySelector("#yearSelect");
+let selectedMonth = document.querySelector("#monthSelect");
+let selectedDate = document.querySelector("#dateSelect");
+let selectedStartHour = document.querySelector("#startHourSelect");
+let selectedStartMinute = document.querySelector("#startMinuteSelect");
+let selectedEndHour = document.querySelector("#endHourSelect");
+let selectedEndMinute = document.querySelector("#endMinuteSelect");
 let textarea = document.querySelector("textarea");
 let saveBtn = document.querySelector("#saveBtn");
 let deleteBtns = document.querySelectorAll(".deleteBtn");
@@ -132,19 +142,26 @@ let list = [];
 // 追加ボタンをクリックしたときの処理
 saveBtn.addEventListener("click", () => {
     if(textarea.value){
-        list.push(textarea.value);
+        list.push(selectedYear.value + "/" + selectedMonth.value + "/" + selectedDate.value + "\n" + selectedStartHour.value + ":" + selectedStartMinute.value + "~" + selectedEndHour.value + ":" + selectedEndMinute.value + "\n" + textarea.value);
         localStorage.setItem("todo", JSON.stringify(list)); //todoをkeyとし、JSON形式で保存
         textarea.value = "";
         output.textContent = ""; // outputの内容を一旦消す
         showList();
+        showSchedule();
     }else{
         alert("予定が入力されていません");
     }
-
 });
 
 // リスト表示
 let showList = () => {
+    //listの要素を日付順に並び替える
+    list.sort((a, b) => {
+        //localeCompare()は、2つの文字列を比較してそれらが異なるかどうかを判定する。0なら等しく、正の値なら1つ目＞2つ目、負の値なら1つ目＜2つ目
+        //第二引数のjaは「日本語」を意味する。第三引数は「文字列内に数値がある場合にそれらを数値として解釈すること」を表す。
+        return a.localeCompare(b, "ja", { numeric: true });
+      });
+    //HTMLを追加
     let outputHTML = "";
     for(let i = 0; i < list.length; i++) {
         outputHTML += '<div class="noteData">' + list[i] + '<button class="deleteBtn">×</button>' + "</div>";
@@ -155,6 +172,21 @@ let showList = () => {
     deleteBtns = document.querySelectorAll(".deleteBtn");
     for(let i = 0; i < deleteBtns.length; i++) {
         deleteBtns[i].addEventListener("click", () => {
+            //カレンダーから該当の予定を消す（※showSchedule()とほぼ同じなので簡略化できそう？）
+            let htmlYear = document.querySelector("#year");
+            let htmlMonth = document.querySelector("#month");
+            let td = document.querySelectorAll("td");
+            let listYear = list[i].slice(0, 4);
+            let listMonth = String(Number(list[i].slice(5, 7))); //文字列「01」→数値「1」→文字列「1」のように変換している。十の位が0のときに1の位のみの文字列にするため（そうでないと後の「===」が機能しない）。
+            let listDate = String(Number(list[i].slice(8, 10))); //同上
+            if(htmlYear.innerText === listYear && htmlMonth.innerText === listMonth){
+                for(let j = 0; j < td.length; j++){
+                    if(td[j].innerText === listDate){
+                        td[j].classList.remove("paint");
+                    }
+                }
+            }
+            //リストから該当の予定を消す
             list.splice(i, 1); //list[i]から1個の要素を取り除く
             localStorage.setItem("todo", JSON.stringify(list));
             showList();
@@ -172,3 +204,22 @@ document.addEventListener("DOMContentLoaded", () => {
         output.textContent = "予定がありません";
     }
 });
+
+//カレンダーの予定がある日に色を付ける関数
+let showSchedule = () => {
+    let htmlYear = document.querySelector("#year");
+    let htmlMonth = document.querySelector("#month");
+    let td = document.querySelectorAll("td");
+    for(let i = 0; i < list.length; i++) {
+        let listYear = list[i].slice(0, 4);
+        let listMonth = String(Number(list[i].slice(5, 7))); //文字列「01」→数値「1」→文字列「1」のように変換している。十の位が0のときに1の位のみの文字列にするため（そうでないと後の「===」が機能しない）。
+        let listDate = String(Number(list[i].slice(8, 10))); //同上
+        if(htmlYear.innerText === listYear && htmlMonth.innerText === listMonth){
+            for(let j = 0; j < td.length; j++){
+                if(td[j].innerText === listDate){
+                    td[j].classList.add("paint");
+                }
+            }
+        }
+    }
+}

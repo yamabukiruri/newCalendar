@@ -71,7 +71,7 @@ tr:first-child td{
 }
 
 #today {
-    background-color: rgb(245, 167, 167);
+    background-color: rgb(211, 219, 234);
 }
 
 .delete {
@@ -98,9 +98,8 @@ tr:first-child td{
     position: fixed;
     top: 5%;
     left: -700px;
-    resize: none;
     min-width: 250px;
-    width: 40%;
+    width: 50%;
     height: 80%;
     font-size: 15px;
     background-color: white;
@@ -119,6 +118,7 @@ tr:first-child td{
     height: 100%;
     background-color: white;
     border-radius: 10px;
+    overflow: scroll;
 }
 
 .noteData {
@@ -151,17 +151,46 @@ tr:first-child td{
     margin-top: 15px;
 }
 
-textarea {
-    width: 80%;
+#input div {
+    background-color: white;
+    padding: 12px 0;
+    font-size: 12px;
+    text-align: center;
+}
+
+select {
+    width: 4%;
     height: 100%;
+    border: none;
+    text-align: right;
+    /*以下3行でプルダウンの矢印を消す*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select:nth-child(1) {
+    width: 8%;
+}
+
+#yearSelect {
+    border-radius: 5px 0 0 5px;
+}
+
+textarea {
+    width: 60%;
+    height: 100%;
+    padding: 2%;
     font-size: 17px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    resize: none;
 }
 
 #saveBtn {
     width: 17%;
     height: 100%;
-    margin-left: 3%;
+    margin-left: 2%;
     background-color: rgb(245, 167, 167);
     border-radius: 5px;
     transition: 0.2s;
@@ -191,4 +220,9 @@ textarea {
     color: white;
     background-color: rgb(129, 153, 194);
     transform: scale(1.1);
+}
+
+/*予定がある日に下線を引く*/
+.paint {
+    box-shadow: 0 -12px rgb(245, 167, 167) inset; /*borderだとセルの大きさが変わってしまうため、border-shadowで指定*/
 }

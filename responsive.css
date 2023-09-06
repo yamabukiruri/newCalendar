@@ -2,10 +2,22 @@
     #moveMonth {
         margin: 0 10%;
     }
+    #note {
+        width: 85%;
+    }
 }
 
 @media (max-width: 530px){
     td {
         padding: 15px 13px;
+    }
+    select {
+        width: 8%;
+    }
+    select:nth-child(1) {
+        width: 15%;
+    }
+    textarea {
+        padding: 3%;
     }
 }
