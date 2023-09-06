@@ -1,8 +1,9 @@
 # newCalendar
 JavaScript学習のアウトプットも兼ねて、昨年作成したカレンダーを大幅に改良して作り直しました。
 
-![calender_readme_img](https://github.com/yamabukiruri/newCalendar/assets/112258108/86c6bc65-a50f-406a-aae6-41065c967fed)
-![schedule_readme_img](https://github.com/yamabukiruri/newCalendar/assets/112258108/ee8d5ed9-e8be-4853-9476-e0b9123f347c)
+![calender_readme_img](https://github.com/yamabukiruri/newCalendar/assets/112258108/15dd74d6-a1e3-485a-be54-e91a3a3575a6)
+![schedule_readme_img](https://github.com/yamabukiruri/newCalendar/assets/112258108/7e71536f-1fd7-49b9-940f-00ff50b6cf54)
+
 ※作品イメージ画像
 
 https://github.com/yamabukiruri/newCalendar/assets/112258108/aee201c0-a14c-401a-a9fe-41da8d16ef91
