@@ -115,15 +115,30 @@ let addBtn = document.querySelector("#addBtn");
 let mask = document.querySelector("#mask");
 let note = document.querySelector("#note");
 
+//（＋）ボタンを押すとリストが開く
 addBtn.addEventListener("click", () => {
-    mask.classList.replace("delete", "open");
-    note.classList.add("open");
+    openNote();
 });
 
+let openNote = () => { //openNote()は後にも使う関数なのでaddBtn.addEventListenerから分けて書いてる
+    mask.classList.replace("delete", "open");
+    note.classList.add("open");
+}
+
+//maskを押すとリストが閉じる
 mask.addEventListener("click", () => {
+    closeNote();
+    //クラス「.colorNote」がついているnoteDataがあればクラスを削除する
+    let colorNote = document.querySelectorAll(".colorNote");
+    for(let i = 0; i < colorNote.length; i++){
+        colorNote[i].classList.remove("colorNote");
+    }
+});
+
+let closeNote = () => {
     mask.classList.replace("open", "delete");
     note.classList.remove("open");
-});
+}
 
 //todoリスト本体
 let output = document.querySelector("#output");
@@ -210,6 +225,7 @@ let showSchedule = () => {
     let htmlYear = document.querySelector("#year");
     let htmlMonth = document.querySelector("#month");
     let td = document.querySelectorAll("td");
+    console.log(td.length);
     for(let i = 0; i < list.length; i++) {
         let listYear = list[i].slice(0, 4);
         let listMonth = String(Number(list[i].slice(5, 7))); //文字列「01」→数値「1」→文字列「1」のように変換している。十の位が0のときに1の位のみの文字列にするため（そうでないと後の「===」が機能しない）。
@@ -222,4 +238,24 @@ let showSchedule = () => {
             }
         }
     }
+    //カレンダーの予定がある日をクリックするとリストが開き、該当日の予定にのみ色がつく
+    let paint = document.querySelectorAll(".paint");
+    for(let i = 0; i < paint.length; i++){
+        paint[i].addEventListener("click", () => {
+            let tdDate = paint[i].innerText;
+            let noteData = document.querySelectorAll(".noteData");
+            for(let j = 0; j < noteData.length; j++) {
+                let noteDataYear = noteData[j].innerText.slice(0, 4);
+                let noteDataMonth = String(Number(noteData[j].innerText.slice(5, 7))); //文字列「01」→数値「1」→文字列「1」のように変換している。十の位が0のときに1の位のみの文字列にするため（そうでないと後の「===」が機能しない）。
+                let noteDataDate = String(Number(noteData[j].innerText.slice(8, 10))); //同上
+                if(htmlYear.innerText === noteDataYear && htmlMonth.innerText === noteDataMonth && tdDate === noteDataDate){
+                    noteData[j].classList.add("colorNote");
+                }
+            }
+            openNote();
+        });
+    }
 }
+
+
+

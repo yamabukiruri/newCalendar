@@ -224,5 +224,11 @@ textarea {
 
 /*予定がある日に下線を引く*/
 .paint {
+    cursor: pointer;
     box-shadow: 0 -12px rgb(245, 167, 167) inset; /*borderだとセルの大きさが変わってしまうため、border-shadowで指定*/
+}
+
+/*予定がある日のセルをクリックしてリストを開くと、該当日の予定のみ色が変わる*/
+.colorNote {
+    background-color: rgb(233, 233, 153);
 }
